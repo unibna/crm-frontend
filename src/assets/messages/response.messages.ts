@@ -1,0 +1,17 @@
+export const RESPONSE_MESSAGES = {
+  ITEM_EXIST: "Item đã tồn tại",
+  UPDATE_SUCCESS: "Cập nhật thành công",
+  UPDATE_ERROR: "Cập nhật lỗi",
+  CREATE_SUCCESS: "Tạo thành công",
+  CREATE_ERROR: "Tạo lỗi",
+  DELETE_SUCCESS: "Xoá thành công",
+  DELETE_ERROR: "Xoá lỗi",
+  END_SESSION: "Hết phiên làm việc",
+  FETCH_ERROR: "Lấy dữ liệu thất bại",
+  DUPLICATE_PHONE: "Số điện thoại đã tồn tại. Vui lòng nhập SĐT khác",
+  PRINT_SUCCESS: "Cập nhật thông tin in đơn thành công",
+  PRINT_FAILED: "Cập nhật thông tin in đơn thất bại",
+  ERROR_CONNECTION_SERVER: "Lỗi kết nối server. Vui lòng thử lại sau!",
+  TOO_LARGE_FILE_SIZE: "Tải lên không thành công. File có kích thước quá lớn",
+  NETWORK_ERROR: "Network Error",
+};

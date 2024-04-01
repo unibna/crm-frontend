@@ -1,0 +1,17 @@
+export type FieldType =
+  | "single_select"
+  | "multi_select"
+  | "long_text"
+  | "single_line_text"
+  | "checkbox"
+  | "date_time"
+  | "date"
+  | "image"
+  | "url"
+  | "number"
+  | "currency"
+  | "percent"
+  | "phone_number"
+  | "email"
+  | "file"
+  | "birthday";

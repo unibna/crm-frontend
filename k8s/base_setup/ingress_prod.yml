@@ -1,0 +1,171 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: front-end
+  labels:
+    name: front-end
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-nginx-front-end
+  namespace: front-end
+spec:
+  acme:
+    email: thuong.nh@skylinktech.vn
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-nginx-private-key
+    solvers:
+      # Use the HTTP-01 challenge provider
+      - http01:
+          ingress:
+            class: nginx
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-nginx-han
+  namespace: front-end
+spec:
+  secretName: letsencrypt-nginx-han
+  dnsNames:
+    - habt.skycom.vn
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-nginx-front-end
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-nginx-jp
+  namespace: front-end
+spec:
+  secretName: letsencrypt-nginx-jp
+  dnsNames:
+    - jp24.skycom.vn
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-nginx-front-end
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-nginx-zac
+  namespace: front-end
+spec:
+  secretName: letsencrypt-nginx-zac
+  dnsNames:
+    - zac.skycom.vn
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-nginx-front-end
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-nginx-misty
+  namespace: front-end
+spec:
+  secretName: letsencrypt-nginx-misty
+  dnsNames:
+    - misty.skycom.vn
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-nginx-front-end
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: letsencrypt-nginx-ryusui
+  namespace: front-end
+spec:
+  secretName: letsencrypt-nginx-ryusui
+  dnsNames:
+    - ryusui.skycom.vn
+  issuerRef:
+    group: cert-manager.io
+    name: letsencrypt-nginx-front-end
+    kind: Issuer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-public-front-end
+  namespace: front-end
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - habt.skycom.vn
+    secretName: letsencrypt-nginx-han
+  - hosts:
+    - jp24.skycom.vn
+    secretName: letsencrypt-nginx-jp
+  - hosts:
+    - zac.skycom.vn
+    secretName: letsencrypt-nginx-zac
+  - hosts:
+    - misty.skycom.vn
+    secretName: letsencrypt-nginx-misty
+  - hosts:
+    - ryusui.skycom.vn
+    secretName: letsencrypt-nginx-ryusui
+  rules:
+  - host: habt.skycom.vn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end-web-service-han
+            port:
+              number: 80
+  - host: jp24.skycom.vn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end-web-service-jp24
+            port:
+              number: 80
+  - host: zac.skycom.vn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end-web-service-zac
+            port:
+              number: 80
+  - host: misty.skycom.vn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end-web-service-misty
+            port:
+              number: 80
+  - host: ryusui.skycom.vn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front-end-web-service-ryusui
+            port:
+              number: 80
+## chỉ chạy lần đầu và thay đổi host cho từng tenant line 41 (p/s: gắn ip domain tới loadbanlencer)uiu

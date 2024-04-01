@@ -1,0 +1,35 @@
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html,
+  body {
+    height: initial !important;
+    overflow: initial !important;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 4mm;
+  }
+  .page-break {
+    margin-top: 1rem;
+    display: block;
+    page-break-before: always;
+  }
+  html, body {
+    width: 210mm;
+    height: 148mm;
+  }
+}
+
+/* @page {
+  size: letter;
+  margin: 10mm;
+} */

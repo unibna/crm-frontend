@@ -1,0 +1,30 @@
+import { yyyy_MM_dd_HH_mm_ss } from "constants/time";
+import format from "date-fns/format";
+import subDays from "date-fns/subDays";
+import { useState } from "react";
+import VoipContainer from "../components/VoipContainer";
+
+const All = () => {
+  const [params, setParams] = useState<any>({
+    limit: 200,
+    page: 1,
+    ordering: "-created",
+    callDateValue: 0,
+    date_from: format(subDays(new Date(), 0), yyyy_MM_dd_HH_mm_ss),
+    date_to: format(subDays(new Date(), 0), yyyy_MM_dd_HH_mm_ss),
+  });
+  return (
+    <VoipContainer
+      params={params}
+      setParams={setParams}
+      isFilterVoipStatus
+      isFilterVoipProccess
+      isFilterCallAttribute
+      isFilterCallDate
+      isFilterTelephonist
+      isFilterModifiedByName
+    />
+  );
+};
+
+export default All;
