@@ -7,6 +7,7 @@ metadata:
     app: crm-frontend
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,7 +23,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: unibna/crm-frontend:0.2
+        image: unibna/crm-frontend:1.2
         imagePullPolicy: IfNotPresent
         resources:
           requests:
