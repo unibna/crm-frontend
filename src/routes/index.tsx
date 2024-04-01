@@ -38,7 +38,7 @@ const Router = () => {
     : user?.is_superuser
     ? "/dashboard"
     : "";
-
+  
   return useRoutes([
     {
       path: "login",
@@ -50,15 +50,15 @@ const Router = () => {
       children: [
         {
           path: "",
-          element: user ? (
-            user.group_permission?.route ? (
-              <Navigate to={defaultRoute} replace />
-            ) : (
-              <Navigate to={`/login`} replace />
-            )
-          ) : (
-            <LoadingScreen />
-          ),
+          // element: user ? (
+          //   user.group_permission?.route ? (
+          //     <Navigate to={defaultRoute} replace />
+          //   ) : (
+          //     <Navigate to={`/login`} replace />
+          //   )
+          // ) : (
+          //   <LoadingScreen />
+          // ),
         },
         { path: "version", element: <VersionView /> },
         { path: "profile", element: <ProfileView /> },
