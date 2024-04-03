@@ -172,7 +172,7 @@ export default function DashboardLayout() {
                 <PopupProvider>
                   {isHorizontalLayout ? horizontalLayout : verticalLayout}
                   <Footer themeLayout={themeLayout} theme={theme}>
-                    Developed by <b>Skycom Enterprise</b>
+                    Developed by <b>Smart Process Innovation</b>
                   </Footer>
                 </PopupProvider>
               </DndProvider>
