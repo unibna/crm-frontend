@@ -8,7 +8,7 @@ IMAGE_NAME="$PROJECT_NAME/$SERVICE_NAME:$VERSION"
 
 if [[ "$1" == "frontend" ]];
 then
-    echo "Building $SERVICE_NAME sync image..."
+    echo "Building $SERVICE_NAME image..."
     docker build \
     --platform linux/amd64 \
     -t $IMAGE_NAME \

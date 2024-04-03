@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: unibna/crm-frontend:1.2
+        image: unibna/crm-frontend:1.4
         imagePullPolicy: IfNotPresent
         resources:
           requests:
@@ -51,7 +51,4 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort: 80
-        envFrom:
-          - secretRef:
-              name: crm-frontend-secret
       restartPolicy: Always
